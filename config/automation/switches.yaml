@@ -1,0 +1,92 @@
+#################################################################
+## Switch Automations
+#################################################################
+
+#################################################################
+## Set Switches Time 
+#################################################################
+- id: 'main_floor_switches_time_on'
+  alias: Main Floor Switches Time - On
+  trigger:
+  - platform: time
+    at: input_datetime.family_room_media_start
+  condition:
+  - condition: state
+    entity_id: group.household
+    state: 'home'
+  action:
+  - service: switch.turn_on
+    data:
+      entity_id: group.familyroomswitches
+
+- id: 'main_floor_switches_time_off'
+  alias: Main Floor Switches Time - Off
+  trigger:
+  - platform: time
+    at: input_datetime.family_room_media_stop
+  action:
+  - service: switch.turn_off
+    data:
+      entity_id: group.familyroomswitches
+
+- id: 'basement_switches_time_off'
+  alias: Basement Switches Time - Off
+  trigger:
+  - platform: time
+    at: input_datetime.basement_media_stop
+  action:
+  - service: switch.turn_off
+    data:
+      entity_id: group.basementswitches
+
+#################################################################
+## Set Switches Home
+#################################################################
+- id: 'switches_home'
+  alias: Switches - Home
+
+  trigger:
+  - platform: state
+    entity_id: group.household
+    from: 'not_home'
+    to: 'home'
+
+  condition:
+  - condition: state
+    entity_id: group.household
+    state: 'home'
+  - condition: time
+    after: input_datetime.family_room_media_start
+    before: input_datetime.family_room_media_stop
+
+  action:
+  - service: switch.turn_on
+    data:
+      entity_id: group.familyroomswitches
+
+#################################################################
+## Set Switches Away
+#################################################################
+- id: 'switches_away'
+  alias: Switches - Away 
+  
+  trigger:
+  - platform: state
+    entity_id: group.household
+    from: 'home'
+    to: 'not_home'
+
+  condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+  - service: switch.turn_off 
+    data:
+      entity_id: group.coreswitches
+  - service: switch.turn_off
+    data:
+      entity_id: group.xmasswitches

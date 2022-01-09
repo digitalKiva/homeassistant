@@ -1,0 +1,67 @@
+#################################################################
+## Alarm Automations
+#################################################################
+
+#################################################################
+## Dis-arm on Home
+#################################################################
+- id: 'alarm_away'
+  alias: Alarm Arm - Away
+
+  trigger:
+  - platform: state
+    entity_id: group.household
+    from: 'home'
+    to: 'not_home'
+
+  condition:
+  - condition: state
+    entity_id: group.household
+    state: 'not_home'
+
+  action:
+  - service: ifttt.trigger
+    data:
+      event: arm_ismartalarm
+
+#################################################################
+## Dis-arm on Home
+#################################################################
+- id: 'alarm_home'
+  alias: Alarm Dis-arm - Home 
+  
+  trigger:
+  - platform: state 
+    entity_id: group.household 
+    from: 'not_home'
+    to: 'home'
+
+  condition:
+  - condition: state
+    entity_id: group.household
+    state: 'home'
+
+  action:
+  - service: ifttt.trigger 
+    data:
+      event: disarm_ismartalarm
+
+#################################################################
+## Arm (Home) at Night 
+#################################################################
+- id: 'alarm_night'
+  alias: Alarm Arm Home - Night 
+  
+  trigger:
+  - platform: time 
+    at: input_datetime.arm_alarm_home_start 
+
+  condition:
+  - condition: state
+    entity_id: group.household
+    state: 'home'
+
+  action:
+  - service: ifttt.trigger 
+    data:
+      event: armhome_ismartalarm 

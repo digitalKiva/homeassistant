@@ -1,0 +1,51 @@
+#################################################################
+## Thermostat Automations
+#################################################################
+
+#################################################################
+## Set Thermostat Home
+#################################################################
+- id: 'climate_home'
+  alias: Climate - Home 
+  
+  trigger:
+  - platform: state 
+    entity_id: group.household 
+    from: 'not_home'
+    to: 'home'
+
+  condition:
+  - condition: state
+    entity_id: group.household
+    state: 'home'
+
+  action:
+  - service: ecobee.resume_program
+    data:
+      entity_id: climate.main_floor
+      resume_all: true
+
+#################################################################
+## Set Thermostat Away
+#################################################################
+- id: 'climate_away'
+  alias: Climate - Away 
+  
+  trigger:
+  - platform: state
+    entity_id: group.household
+    from: 'home'
+    to: 'not_home'
+
+  condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+  - service: climate.set_preset_mode
+    data:
+      entity_id: climate.main_floor
+      preset_mode: 'away'

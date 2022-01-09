@@ -1,0 +1,40 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+http:
+  ip_ban_enabled: true
+  login_attempts_threshold: 5
+  ssl_certificate: /etc/letsencrypt/live/digitalkiva.fivebytestudios.com/fullchain.pem
+  ssl_key: /etc/letsencrypt/live/digitalkiva.fivebytestudios.com/privkey.pem
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+# time constants
+input_datetime:
+  family_room_media_start:
+    name: Family Room TV Power - Start
+    has_date: false
+    has_time: true
+    initial: 08:00
+  family_room_media_stop:
+    name: Family Room TV Power - Stop
+    has_date: false
+    has_time: true
+    initial: 01:00
+  basement_media_stop:
+    name: Basement TV Power - Stop
+    has_date: false
+    has_time: true
+    initial: 01:30
+  arm_alarm_home_start:
+    name: Arm Alarm Home - Start
+    has_date: false
+    has_time: true
+    initial: 01:30
+
+group: !include groups.yaml
+automation: !include_dir_merge_list automation
+script: !include scripts.yaml
+scene: !include scenes.yaml
