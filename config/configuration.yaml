@@ -17,7 +17,7 @@ input_datetime:
     name: Family Room TV Power - Start
     has_date: false
     has_time: true
-    initial: 08:00
+    initial: 07:00
   family_room_media_stop:
     name: Family Room TV Power - Stop
     has_date: false
