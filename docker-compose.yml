@@ -3,7 +3,6 @@ services:
   homeassistant:
     container_name: homeassistant
     image: homeassistant/raspberrypi3-64-homeassistant:stable
-    init: true
     network_mode: "host"
     volumes:
       - /opt/homeassistant:/config
