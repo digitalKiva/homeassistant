@@ -1,15 +1,15 @@
-version: '3.7'
+version: '3'
 services:
   homeassistant:
     container_name: homeassistant
-    image: homeassistant/raspberrypi3-64-homeassistant:stable
-    network_mode: "host"
+    image: "ghcr.io/home-assistant/home-assistant:stable"
     volumes:
       - /opt/homeassistant:/config
       - /etc/letsencrypt:/etc/letsencrypt
-    environment:
-      - TZ=America/Chicago
-    restart: unless-stopped 
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
     healthcheck:
       test: ["CMD", "curl", "-f", "http://127.0.0.1:8123"]
       interval: 30s
