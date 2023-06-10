@@ -28,11 +28,6 @@ input_datetime:
     has_date: false
     has_time: true
     initial: 01:30
-  arm_alarm_home_start:
-    name: Arm Alarm Home - Start
-    has_date: false
-    has_time: true
-    initial: 01:30
 
 group: !include groups.yaml
 automation: !include_dir_merge_list automation
