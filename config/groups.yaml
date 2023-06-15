@@ -3,7 +3,7 @@
 #################################################################
 
   Household:
-    - person.joseph_swantek
+    - person.joe_swantek
     - person.lisa_swantek
 
   FamilyRoomSwitches:
