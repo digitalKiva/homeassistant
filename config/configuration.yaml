@@ -2,8 +2,6 @@
 default_config:
 
 http:
-  ip_ban_enabled: true
-  login_attempts_threshold: 5
   ssl_certificate: /etc/letsencrypt/live/digitalkiva.fivebytestudios.com/fullchain.pem
   ssl_key: /etc/letsencrypt/live/digitalkiva.fivebytestudios.com/privkey.pem
 
