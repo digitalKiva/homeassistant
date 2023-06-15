@@ -1,6 +1,18 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
+homeassistant:
+  name: Home
+  latitude: 41.7867171
+  longitude: -88.0134703
+  elevation: 250
+  unit_system: us_customary
+  currency: USD
+  country: US
+  time_zone: "America/Chicago"
+  external_url: "https://digitalkiva.fivebytestudios.com"
+  internal_url: "http://192.168.2.24:8123"
+
 http:
   ssl_certificate: /etc/letsencrypt/live/digitalkiva.fivebytestudios.com/fullchain.pem
   ssl_key: /etc/letsencrypt/live/digitalkiva.fivebytestudios.com/privkey.pem
