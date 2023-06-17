@@ -22,7 +22,7 @@
   action:
   - service: ecobee.resume_program
     data:
-      entity_id: climate.main_floor
+      entity_id: climate.my_ecobee
       resume_all: true
 
 #################################################################
@@ -47,5 +47,5 @@
   action:
   - service: climate.set_preset_mode
     data:
-      entity_id: climate.main_floor
+      entity_id: climate.my_ecobee
       preset_mode: 'away'
