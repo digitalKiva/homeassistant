@@ -5,19 +5,3 @@
 Household:
   - person.joe_swantek
   - person.lisa_swantek
-
-FamilyRoomSwitches:
-  - switch.family_media_center
-  - switch.family_room_tv
-
-BasementSwitches:
-  - switch.basement_media_center
-  - switch.basement_subwoofer
-
-CoreSwitches:
-  - group.basementswitches
-  - group.familyroomswitches
-
-XmasSwitches:
-  - switch.basement_xmas
-  - switch.family_room_xmas
